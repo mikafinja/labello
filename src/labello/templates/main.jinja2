@@ -1,0 +1,203 @@
+{% extends "base.jinja2" %}
+{% block title %}{{ website['title'] }}{% endblock %}
+
+
+{% block container %}
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-12 lead">
+            <h1>{{ website['title'] }}</h1>
+        </div>
+        <div class="col-lg-12 d-none d-lg-block lead">
+            <p>{{ website['slug'] }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+                <div class="card mb-3">
+                    <div class="card-header"><strong><i class="mdi mdi-label-outline"></i> Label Type</strong></div>
+                    <div class="card-body">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
+                            <label type="button" class="btn btn btn-outline-secondary active">
+                                <input type="radio" name="mode" id="mode" autocomplete="off" checked value="text">
+                                <i class="mdi mdi-note-text"></i> Text
+                            </label>
+                            <label type="button" class="btn btn btn-outline-secondary">
+                                <input type="radio" name="mode" id="mode" autocomplete="off" value="qrcode">
+                               <i class="mdi mdi-qrcode"></i> QR-Code
+                            </label>
+                            <label type="button" class="btn btn btn-outline-secondary">
+                                <input type="radio" name="mode" id="mode" autocomplete="off" value="image">
+                               <i class="mdi mdi-image"></i> Image
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <a class="text-dark" data-toggle="collapse" href="#card_body_label_settings"><strong><i class="mdi mdi-settings"></i> Label settings</strong></a>
+                    </div>
+                    <div class="card-body collapse" id="card_body_label_settings">
+                        Label size:
+                        <select name="label_size" class="form-control mb-2" id="label_size">
+                            {% for label in labels %}
+                                {% if label == "62" %}
+                                    <option value="{{ label }}" selected>{{ labels[label]['name'] }}</option>
+                                {% else %}
+                                    <option value="{{ label }}">{{ labels[label]['name'] }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+
+                        <div class="d-block">Orientation:</div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
+                        <label type="button" class="btn btn-outline-secondary active">
+                                <input type="radio" name="label_orientation" id="label_rotated_no" value="normal" autocomplete="off" checked>
+                                <i class="mdi mdi-label-outline"></i>normal
+                            </label>
+                            <label type="button" class="btn btn-outline-secondary">
+                                <input type="radio" name="label_orientation" id="label_rotated_yes" value="rotated" autocomplete="off">
+                                <i class="mdi mdi-format-rotate-90 mdi-rotate-90"></i>rotated
+                            </label>
+                        </div>
+{#                        <div class="d-block">Margins:</div>#}
+{#                        <div class="form-inline">#}
+{#                            <span class="col-md-3 col-6">left:<input style="display: inline-block;" type="number" id="margin_left" name="font_size" class="form-control col-7 ml-2" value="{{ margins['left'] }}" min="0" max="255"></span>#}
+{#                            <span class="col-md-3 col-6">right:<input style="display: inline-block;" type="number" id="margin_right" name="font_size" class="form-control col-7 ml-2" value="{{ margins['right'] }}" min="0" max="255"></span>#}
+{#                            <span class="col-md-3 col-6">top:<input style="display: inline-block;" type="number" id="margin_top" name="font_size" class="form-control col-7 ml-2" value="{{ margins['top'] }}" min="0" max="255"></span>#}
+{#                            <span class="col-md-3 col-6">bottom:<input style="display: inline-block;" type="number" id="margin_bottom" name="font_size" class="form-control col-7 ml-2" value="{{ margins['bottom'] }}" min="0" max="255"></span>#}
+{#                        </div>#}
+                    </div>
+                </div>
+
+                <div class="card mb-3" id="card_font_format">
+                    <div class="card-header"><strong><i class="mdi mdi-format-font"></i> Format</strong></div>
+                    <div class="card-body text-center" id="card_font_settings">
+                        <div class="row">
+                            <div class="col-8 col-md-10">
+                        {# select box for selecting font family #}
+                        <select style="display: inline-block;" name="font-family" class="form-control" id="font_family">
+                            {% for font in fonts %}
+                                <option>{{ font }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                            <div class="col-4 col-md-2">
+
+                        {# input for font size selection #}
+                            <input style="display: inline-block;" type="number" id="font_size" name="font_size" class="form-control" value="45" min="3" max="255">
+                           </div>
+                        </div>
+                   {# buttons for selecting font style #}
+                    <div class="row">
+
+                        <div class="col-4 text-md-left">
+                            {# buttons for selecting horizontal text alignment #}
+                            <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
+                                <label type="button" class="btn btn-outline-secondary">
+                                    <input type="radio" name="font-horizontal-align" id="font_align_left" value="left" autocomplete="off">
+                                    <i class="mdi mdi-format-align-left"></i>
+                                </label>
+                                <label type="button" class="btn btn-outline-secondary active">
+                                    <input type="radio" name="font-horizontal-align" id="font_align_center" value="center" autocomplete="off" checked="checked">
+                                    <i class="mdi mdi-format-align-center"></i>
+                                </label>
+                                <label type="button" class="btn btn-outline-secondary">
+                                    <input type="radio" name="font-horizontal-align" id="font_align_right" value="right" autocomplete="off">
+                                    <i class="mdi mdi-format-align-right"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4 text-md-center">
+                            {# buttons for selecting vertical text alignment #}
+                            <div class="btn-group btn-group-toggle mt-3" dota-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
+                                <label type="button" class="btn btn-outline-secondary">
+                                    <input type="radio" name="font-vertical-align" id="font_align_top"  value="top" autocomplete="off">
+                                    <i class="mdi mdi-format-align-top"></i>
+                                </label>
+                                <label type="button" class="btn btn-outline-secondary active">
+                                    <input type="radio" name="font-vertical-align" id="font_align_middle" value="middle" autocomplete="off" checked="checked">
+                                    <i class="mdi mdi-format-align-middle"></i>
+                                </label>
+                                <label type="button" class="btn btn-outline-secondary">
+                                    <input type="radio" name="font-vertical-align" id="font_align_bottom" value="bottom" autocomplete="off">
+                                    <i class="mdi mdi-format-align-bottom"></i>
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3" id="card_label_text">
+                    <div class="card-header">
+                        <strong><i class="mdi mdi-textbox"></i> Label Text</strong>
+                    </div>
+                    <div class="card-body">
+                        <textarea class="form-control" id="label_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="card mb-3" id="card_label_qrcode">
+                    <div class="card-header">
+                        <strong><i class="mdi mdi-qrcode"></i> QR-Code</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-block">
+                            QR-Code Text
+                        </div>
+                        <input type="text" class="form-control mb-2" id="qr_text" name="qr_text">
+                        <div class="d-block">
+                            Error correction
+                        </div>
+                        <select class="form-control" name="qr_error" id="qr_error">
+                            <option value="1">low ( < 7% )</option>
+                            <option value="0" selected>medium ( < 15% )</option>
+                            <option value="3">quartile ( < 25% )</option>
+                            <option value="2">high ( < 30% )</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card mb-3" id="card_label_image">
+                    <div class="card-header">
+                        <strong><i class="mdi mdi-image"></i> Image</strong>
+                    </div>
+                    <div class="card-body">
+                        <input type="file" class="form-control-file" id="label_image">
+                    </div>
+                </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <strong><i class="mdi mdi-tag-text-outline"></i> Preview</strong>
+                </div>
+                <div class="card-body">
+                    <img src="" id="preview" class="img-fluid img-thumbnail" style="max-height: 300px">
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg mb-3 btn-block" id="print" onclick="print()"><i class="mdi mdi-printer"></i> Print</button>
+
+            <div class="card">
+                <div class="card-header">
+                    <strong><i class="mdi mdi-printer-settings"></i> Printer Status</strong>
+                </div>
+                <div class="card-body">
+                    <div id="status" class="alert alert-secondary mb-0">
+                        <b>Unknown</b>
+                        The printer status is unknown!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        {% include "main.js" %}
+    </script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+    {{ super() }}
+{#    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.99/css/materialdesignicons.min.css">#}
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/labello.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="css/materialdesignicons.css") }}">
+
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for("static", filename="favicons/apple-touch-icon.png") }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for("static", filename="favicons/favicon-32x32.png") }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for("static", filename="favicons/favicon-16x16.png") }}">
+    <link rel="manifest" href="{{ url_for("static", filename="favicons/site.webmanifest") }}">
+    <link rel="mask-icon" href="{{ url_for("static", filename="favicons/safari-pinned-tab.svg") }}" color="#525252">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#000000">
+
+{% endblock styles %}
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='labello.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                {{ website['title'] }}
+            </a>
+        </div>
+    </nav>
+
+{% endblock navbar %}
+
+{% block content %}
+    <div class="container">
+        {% block container %}{% endblock container %}
+    </div>
+{% endblock %}

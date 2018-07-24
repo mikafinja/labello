@@ -1,0 +1,29 @@
+---
+server:
+  port: 4242
+  host: "0.0.0.0"
+
+logging:
+  level: 30 # 10=debug, 20=info, 30=warning, 40=error, 50=critical
+
+website:
+  html_title: "labello - label printer"
+  title: "labello"
+  slug: "print all your labels"
+  bootstrap_local: True
+
+label:
+  margins:
+    top: 24
+    bottom: 24
+    left: 24
+    right: 24
+  feed_margin: 16 # do not set to values smaller 15
+
+printer:
+  device: "/dev/usb/lp0"
+  model: "QL-500"
+
+fonts:
+  - /opt/labello/download_font
+  - /opt/labello/fonts

@@ -1,0 +1,6 @@
+brother_ql>=0.8.4
+Pillow>=5
+Flask>=1.0.2
+flask_bootstrap4
+qrcode>=6.0
+PyYAML>=3.13

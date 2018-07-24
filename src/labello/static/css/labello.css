@@ -1,0 +1,8 @@
+.pb {
+    padding-bottom: 1.5em;
+}
+
+.alert b {
+    display: block;
+    font-weight: bold;
+}
