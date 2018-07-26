@@ -2,9 +2,8 @@
 
 {% block styles %}
     {{ super() }}
-{#    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.99/css/materialdesignicons.min.css">#}
     <link rel="stylesheet" href="{{ url_for("static", filename="css/labello.css") }}">
-    <link rel="stylesheet" href="{{ url_for("static", filename="css/materialdesignicons.css") }}">
+    <link rel="stylesheet" href="{{ url_for("node_module", filename="mdi/css/materialdesignicons.css") }}">
 
     <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for("static", filename="favicons/apple-touch-icon.png") }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for("static", filename="favicons/favicon-32x32.png") }}">

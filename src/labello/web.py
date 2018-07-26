@@ -1,5 +1,5 @@
 from . import app, label, fonts
-from flask import render_template, send_file, request, jsonify
+from flask import render_template, send_file, request, jsonify, send_from_directory
 from brother_ql.devicedependent import label_type_specs
 
 
@@ -15,6 +15,12 @@ def root():
 @app.errorhandler(404)
 def error_404(e):
     return 'api endpoint "{}" not found'.format(request.path), 404
+
+
+@app.route('/node_modules/<path:filename>', methods=['GET'])
+def node_module(filename):
+    print(filename)
+    return send_from_directory(app.config['node_path'], filename)
 
 
 @app.route('/preview', methods=['POST'])

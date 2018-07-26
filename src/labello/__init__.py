@@ -7,10 +7,10 @@ import os.path
 from . import fonts
 from brother_ql.backends import backend_factory, guess_backend
 
-config_path = os.path.dirname(os.path.abspath(__file__)).split(os.path.sep)[:-1]
 local_config_path = os.path.dirname(os.path.abspath(__file__)).split(os.path.sep)[:-1]
 local_config_path.append("config.local.yaml")
 local_config_path = os.path.sep.join(local_config_path)
+config_path = os.path.dirname(os.path.abspath(__file__)).split(os.path.sep)[:-1]
 config_path.append("config.yaml")
 config_path = os.path.sep.join(config_path)
 
@@ -72,6 +72,10 @@ app.config['DEFAULT_PARSERS'] = [
 ]
 
 app.config['WEBSITE'] = config['website']
+
+node_path = os.path.dirname(os.path.abspath(__file__)).split(os.path.sep)[:-1]
+node_path.append("node_modules")
+app.config['node_path'] = os.path.sep.join(node_path)
 
 # initialize bootstrap
 bootstrap = Bootstrap(app)
