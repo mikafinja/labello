@@ -14,28 +14,22 @@ class Label:
         """ creates a new label with the given settings """
         lts = label_type_specs
         self.size = data['label_size']
+        logger.debug('Label size: {}'.format(lts[self.size]['dots_printable']))
         self.width, self.height = lts[self.size]['dots_printable']
-        if "font_name" not in data:
-            data['font_name'] = "OCRA"
-        if "font_size" not in data:
-            data['font_size'] = 42
-        font_path = font.fonts[data['font_name']]
-        font_size = 45
         if data['orientation'] == 'rotated':
             self.rotated = True
         else:
             self.rotated = False
-        self.data = data
 
-        if not file:
-            self.font_path = font_path
-            self.font_size = font_size
-            self.font = ImageFont.truetype(
-                font.fonts[data['font_name']]['path'], int(data['font_size']))
+        self.data = data
         self.image = Image.new('L', (self.width, self.height), 255)
         self.label = ImageDraw.Draw(self.image)
         logger.debug('Rotated: {}'.format(self.rotated))
+
         if 'text' in self.data:
+            self.font_path = font.fonts[data['font_name']]
+            self.font_size = data['font_size']
+            self.font = ImageFont.truetype(font.fonts[data['font_name']]['path'], int(data['font_size']))
             self.text()
         if 'qr_text' in self.data:
             self.qr()
@@ -61,20 +55,20 @@ class Label:
         if self.rotated:
             if img_width > label_height or img_height > label_width:
                 ratio = min(label_height / img_width, label_width / img_height)
-                x = ratio * img_height
-                y = ratio * img_width
+                x = ratio * img_width
+                y = ratio * img_height
             else:
-                y = img_height
-                x = img_width
+                y = img_width
+                x = img_height
 
         else:
             if img_width > label_width or img_height > label_height:
                 ratio = min(label_width / img_width, label_height / img_height)
-                x = ratio * img_height
-                y = ratio * img_width
+                x = ratio * img_width
+                y = ratio * img_height
             else:
-                x = img_height
-                y = img_width
+                x = img_width
+                y = img_height
 
         ret = (int(x), int(y))
 
@@ -96,17 +90,17 @@ class Label:
         if self.height == 0:
             if self.rotated:
                 x = self.width
-                y = imgsize[1]
+                y = imgsize[0]
             else:
-                x = imgsize[0]
-                y = self.width
+                y = imgsize[0]
+                x = self.width
         else:
             if self.rotated:
-                y = self.height
-                x = self.width
-            else:
                 x = self.height
                 y = self.width
+            else:
+                x = self.width
+                y = self.height
 
         self.image = Image.new('L', (x, y), 255)
 
@@ -121,7 +115,7 @@ class Label:
     def qr(self):
         logger.debug('Generating QR-CODE: {}'.format(self.data['qr_text']))
 
-        # TODO: more options on qr-code (Error-Correction, plaintext content, etc)
+        # TODO: more options on qr-code (plaintext content, box size, etc)
         if 'error_correction' in self.data:
             error_correction = self.data['error_correction']
         else:
@@ -144,15 +138,15 @@ class Label:
         # resize label
         if self.height == 0:
             if self.rotated:
-                x = qrsize[1]
-                y = self.width
+                x = self.width
+                y = qrsize[0]
             else:
                 y = qrsize[0]
                 x = self.width
         else:
             if self.rotated:
-                y = self.width
                 x = self.height
+                y = self.width
             else:
                 x = self.width
                 y = self.height
