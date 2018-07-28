@@ -4,7 +4,7 @@
 A web-based service designed to print labels on your Brother QL label printer.
 """
 
-from labello import app, logger
+from app import app, logger
 
 
 if __name__ == '__main__':

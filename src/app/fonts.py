@@ -60,3 +60,9 @@ class Fonts:
 
     def fontlist(self):
         return sorted(self.fonts, key=str.lower)
+
+    def fonts_available(self):
+        if len(self.fonts) == 0:
+            return False
+        else:
+            return len(self.fonts)
