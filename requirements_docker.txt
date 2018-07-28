@@ -1,4 +1,4 @@
-brother_ql>=0.8.4- /opt/labello/fonts
+brother_ql>=0.8.4
 Flask>=1.0.2
 flask_bootstrap4
 qrcode>=6.0
