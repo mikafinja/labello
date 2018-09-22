@@ -3,3 +3,4 @@ Flask>=1.0.2
 flask_bootstrap4
 qrcode>=6.0
 PyYAML>=3.13
+meinheld
