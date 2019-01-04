@@ -1,0 +1,29 @@
+---
+server:
+  port: $LAB_SERVER_PORT
+  host: $LAB_SERVER_HOST
+
+logging:
+  level: $LAB_LOGGING # 10=debug, 20=info, 30=warning, 40=error, 50=critical
+
+website:
+  html_title: $LAB_WEBSITE_HTML_TITLE
+  title: $LAB_WEBSITE_TITLE
+  slug: $LAB_WEBSITE_SLUG
+  bootstrap_local: $LAB_WEBSITE_BOOTSTRAP_LOCAL
+
+label:
+  margins:
+    top: $LAB_LABEL_MARGIN_TOP
+    bottom: $LAB_LABEL_MARGIN_BOTTOM
+    left: $LAB_LABEL_MARGIN_LEFT
+    right: $LAB_LABEL_MARGIN_RIGHT
+  feed_margin: $LAB_LABEL_FEED_MARGIN # do not set to values smaller 15
+  font_spacing: $LAB_LABEL_FONT_SPACING
+
+printer:
+  device: $LAB_PRINTER_DEVICE
+  model: $LAB_PRINTER_MODEL
+
+fonts:
+  - $LAB_FONT_PATH

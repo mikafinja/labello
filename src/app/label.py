@@ -1,12 +1,11 @@
 from PIL import Image, ImageDraw, ImageFont
-from brother_ql.devicedependent import models, label_type_specs, ENDLESS_LABEL, cuttingsupport, min_max_length_dots
+from brother_ql.devicedependent import label_type_specs, ENDLESS_LABEL, cuttingsupport, min_max_length_dots
 from brother_ql import BrotherQLRaster, create_label
 from brother_ql.backends import backend_factory
-from io import BytesIO, StringIO
+from io import BytesIO
 import base64
 from . import font, backend, logger, config
 import qrcode
-import barcode
 from .halftone import halftone
 from pprint import pprint
 

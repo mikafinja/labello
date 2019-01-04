@@ -91,6 +91,7 @@ font = fonts.Fonts()
 for folder in config['fonts']:
     font.add_fonts(folder)
 app.config['fonts'] = font.fontlist()
+logger.debug(app.config['fonts'])
 
 # setting up printer
 try:
