@@ -2,7 +2,7 @@ FROM alpine:latest
 WORKDIR /opt/labello
 COPY . /opt/labello
 RUN apk upgrade -U && \
-    apk add python3 py-pillow fontconfig yarn gettext && \
+    apk add python3 py-pillow fontconfig yarn gettext python3-dev g++ && \
     pip3 install -r requirements_docker.txt && \
     yarn --cwd src && \
     mkdir /opt/labello/fonts
@@ -24,4 +24,3 @@ ENV LAB_PRINTER_DEVICE="tcp://127.0.0.1:9100"
 ENV LAB_PRINTER_MODEL="QL-720NW"
 ENV LAB_FONT_PATH="/opt/labello/fonts"
 ENTRYPOINT ["/bin/sh", "/opt/labello/entrypoint.sh"]
-
