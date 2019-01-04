@@ -4,7 +4,7 @@ COPY . /opt/labello
 RUN apk upgrade -U && \
     apk add python3 py-pillow fontconfig yarn gettext && \
     pip3 install -r requirements_docker.txt && \
-    yarn && \
+    yarn --cwd src && \
     mkdir /opt/labello/fonts
 EXPOSE 4242
 VOLUME /opt/labello/fonts
