@@ -65,6 +65,12 @@ try:
 except:
     app.config['margins'] = {"top": 24, "bottom": 24, "left": 24, "right": 24}
 
+# get font_spacing
+try:
+    app.config['font_spacing'] = config['label']['font_spacing']
+except:
+    app.config['font_spacing'] = 13
+
 app.config['DEFAULT_PARSERS'] = [
     'flask.ext.api.parsers.JSONParser',
     'flask.ext.api.parsers.URLEncodedParser',

@@ -25,10 +25,10 @@
                                 <input type="radio" name="mode" id="mode" autocomplete="off" value="qrcode">
                                <i class="mdi mdi-qrcode"></i> QR-Code
                             </label>
-                            <label type="button" class="btn btn btn-outline-secondary">
-                                <input type="radio" name="mode" id="mode" autocomplete="off" value="image">
-                               <i class="mdi mdi-image"></i> Image
-                            </label>
+{#                            <label type="button" class="btn btn btn-outline-secondary">#}
+{#                                <input type="radio" name="mode" id="mode" autocomplete="off" value="image">#}
+{#                               <i class="mdi mdi-image"></i> Image#}
+{#                            </label>#}
                         </div>
                     </div>
                 </div>
@@ -60,13 +60,33 @@
                                 <i class="mdi mdi-format-rotate-90 mdi-rotate-90"></i>rotated
                             </label>
                         </div>
-{#                        <div class="d-block">Margins:</div>#}
-{#                        <div class="form-inline">#}
-{#                            <span class="col-md-3 col-6">left:<input style="display: inline-block;" type="number" id="margin_left" name="font_size" class="form-control col-7 ml-2" value="{{ margins['left'] }}" min="0" max="255"></span>#}
-{#                            <span class="col-md-3 col-6">right:<input style="display: inline-block;" type="number" id="margin_right" name="font_size" class="form-control col-7 ml-2" value="{{ margins['right'] }}" min="0" max="255"></span>#}
-{#                            <span class="col-md-3 col-6">top:<input style="display: inline-block;" type="number" id="margin_top" name="font_size" class="form-control col-7 ml-2" value="{{ margins['top'] }}" min="0" max="255"></span>#}
-{#                            <span class="col-md-3 col-6">bottom:<input style="display: inline-block;" type="number" id="margin_bottom" name="font_size" class="form-control col-7 ml-2" value="{{ margins['bottom'] }}" min="0" max="255"></span>#}
-{#                        </div>#}
+                        <div class="d-block">Margins:</div>
+                        <div class="form-inline">
+                            <span class="col-6">
+                                <div class="form-group row">
+                                    <label for="margin_left" class="col-5">left:</label>
+                                    <input type="number" id="margin_left" name="margin_left" class="form-control col-5 ml-2" value="{{ margins['left'] }}" min="0" max="255">
+                                </div>
+                            </span>
+                            <span class="col-6">
+                                <div class="form-group row">
+                                    <label for="margin_left" class="col-5">right:</label>
+                                    <input type="number" id="margin_right" name="margin_right" class="form-control col-5 ml-2" value="{{ margins['right'] }}" min="0" max="255">
+                                </div>
+                            </span>
+                            <span class="col-6">
+                                <div class="form-group row">
+                                    <label for="margin_left" class="col-5">top:</label>
+                                    <input type="number" id="margin_top" name="margin_top" class="form-control col-5 ml-2" value="{{ margins['top'] }}" min="0" max="255">
+                                </div>
+                            </span>
+                            <span class="col-6">
+                                <div class="form-group row">
+                                    <label for="margin_bottom" class="col-5">bottom:</label>
+                                    <input type="number" id="margin_bottom" name="margin_bottom" class="form-control col-5 ml-2" value="{{ margins['bottom'] }}" min="0" max="255">
+                                </div>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -88,18 +108,23 @@
                             <input style="display: inline-block;" type="number" id="font_size" name="font_size" class="form-control" value="45" min="3" max="255">
                            </div>
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-4" style="text-align: left;">Spacing:</div>
+                            <div class="col-4"><input type="number" id="font_spacing" name="font_spacing" class="form-control" value="{{ spacing }}"></div>
+                            <div class="col-4"></div>
+                        </div>
                    {# buttons for selecting font style #}
                     <div class="row">
 
                         <div class="col-4 text-md-left">
                             {# buttons for selecting horizontal text alignment #}
                             <div class="btn-group btn-group-toggle mt-3" data-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
-                                <label type="button" class="btn btn-outline-secondary">
-                                    <input type="radio" name="font-horizontal-align" id="font_align_left" value="left" autocomplete="off">
+                                <label type="button" class="btn btn-outline-secondary active">
+                                    <input type="radio" name="font-horizontal-align" id="font_align_left" value="left" autocomplete="off" checked="checked">
                                     <i class="mdi mdi-format-align-left"></i>
                                 </label>
-                                <label type="button" class="btn btn-outline-secondary active">
-                                    <input type="radio" name="font-horizontal-align" id="font_align_center" value="center" autocomplete="off" checked="checked">
+                                <label type="button" class="btn btn-outline-secondary">
+                                    <input type="radio" name="font-horizontal-align" id="font_align_center" value="center" autocomplete="off">
                                     <i class="mdi mdi-format-align-center"></i>
                                 </label>
                                 <label type="button" class="btn btn-outline-secondary">
@@ -111,12 +136,12 @@
                         <div class="col-4 text-md-center">
                             {# buttons for selecting vertical text alignment #}
                             <div class="btn-group btn-group-toggle mt-3" dota-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
-                                <label type="button" class="btn btn-outline-secondary">
-                                    <input type="radio" name="font-vertical-align" id="font_align_top"  value="top" autocomplete="off">
+                                <label type="button" class="btn btn-outline-secondary active">
+                                    <input type="radio" name="font-vertical-align" id="font_align_top"  value="top" autocomplete="off" checked="checked">
                                     <i class="mdi mdi-format-align-top"></i>
                                 </label>
-                                <label type="button" class="btn btn-outline-secondary active">
-                                    <input type="radio" name="font-vertical-align" id="font_align_middle" value="middle" autocomplete="off" checked="checked">
+                                <label type="button" class="btn btn-outline-secondary">
+                                    <input type="radio" name="font-vertical-align" id="font_align_middle" value="middle" autocomplete="off">
                                     <i class="mdi mdi-format-align-middle"></i>
                                 </label>
                                 <label type="button" class="btn btn-outline-secondary">
@@ -155,6 +180,31 @@
                             <option value="3">quartile ( < 25% )</option>
                             <option value="2">high ( < 30% )</option>
                         </select>
+                        <div class="d-block mt-3">
+                            Horizontal align
+                        </div>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons" role="group" aria-label="Basic example" data-toggle="buttons">
+                            <label type="button" class="btn btn-outline-secondary">
+                                <input type="radio" name="qr_align" id="qr_align_left" value="left" autocomplete="off">
+                                <i class="mdi mdi-format-align-left"></i>
+                            </label>
+                            <label type="button" class="btn btn-outline-secondary active">
+                                <input type="radio" name="qr_align" id="qr_align_center" value="center" autocomplete="off" checked="checked">
+                                <i class="mdi mdi-format-align-center"></i>
+                            </label>
+                            <label type="button" class="btn btn-outline-secondary">
+                                <input type="radio" name="qr_align" id="qr_align_right" value="right" autocomplete="off">
+                                <i class="mdi mdi-format-align-right"></i>
+                            </label>
+                        </div>
+                        <div class="d-block mt-3">
+                            Show text below qr-code
+                        </div>
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-secondary">
+                                <input type="checkbox" autocomplete="off">show text
+                            </label>
+                        </div>
                     </div>
                 </div>
 

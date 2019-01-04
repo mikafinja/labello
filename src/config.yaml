@@ -19,6 +19,7 @@ label:
     left: 24
     right: 24
   feed_margin: 16 # do not set to values smaller 15
+  font_spacing: 13
 
 printer:
   device: "/dev/usb/lp0"

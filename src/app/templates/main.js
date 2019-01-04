@@ -43,6 +43,51 @@ function get_data_text() {
         font_size = 255;
     }
 
+    // get left margin and restrict between 0 and 255
+    var margin_left = $("#margin_left").val();
+    if (margin_left < 0) {
+        margin_left = 0;
+    }
+    else if (margin_left > 255) {
+        margin_left = 255;
+    }
+    
+    // get right margin and restrict between 0 and 255
+    var margin_right = $("#margin_right").val();
+    if (margin_right < 0) {
+        margin_right = 0;
+    }
+    else if (margin_right > 255) {
+        margin_right = 255;
+    }
+    
+    // get top margin and restrict between 0 and 255
+    var margin_top = $("#margin_top").val();
+    if (margin_top < 0) {
+        margin_top = 0;
+    }
+    else if (margin_top > 255) {
+        margin_top = 255;
+    }
+    
+    // get bottom margin and restrict between 0 and 255
+    var margin_bottom = $("#margin_bottom").val();
+    if (margin_bottom < 0) {
+        margin_bottom = 0;
+    }
+    else if (margin_bottom > 255) {
+        margin_bottom = 255;
+    }
+
+    // get font_spacing
+    var font_spacing = $("#font_spacing").val();
+    if (font_spacing < 0) {
+        margin_bottom = 0;
+    }
+    else if (font_spacing > 255) {
+        font_spacing = 255;
+    }
+
     // get font style
     var underline = false;
     if ($("#font_style_underline:checked").val() === "underline") {
@@ -75,6 +120,11 @@ function get_data_text() {
         underline: underline,
         label_size: label_size,
         orientation: orientation,
+        margin_left: margin_left,
+        margin_right: margin_right,
+        margin_top: margin_top,
+        margin_bottom: margin_bottom,
+        font_spacing: font_spacing,
     };
 
     return label_data;
@@ -102,6 +152,8 @@ function get_data_qrcode() {
     // get error correction
     var error_correction = $("#qr_error").find(":selected").val();
 
+    var qr_align = $("input[name='qr_align']:checked").val();
+
     var label_data = {
         font_name: font_family,
         qr_text: $("#qr_text").val(),
@@ -109,6 +161,11 @@ function get_data_qrcode() {
         orientation: orientation,
         font_size: font_size,
         error_correction: error_correction,
+        qr_align: qr_align,
+        margin_left: 24,
+        margin_right: 24,
+        margin_top: 24,
+        margin_bottom: 24,
     }
 
     return label_data;
@@ -244,5 +301,37 @@ $("#qr_text").keyup(function () {
 });
 
 $("#qr_error").change(function () {
+    preview();
+});
+
+$("#margin_left").change(function () {
+    preview();
+});
+
+$("#margin_right").change(function () {
+    preview();
+});
+
+$("#margin_top").change(function () {
+    preview();
+});
+
+$("#margin_bottom").change(function () {
+    preview();
+});
+
+$("#font_spacing").change(function () {
+    preview();
+});
+
+$("#qr_align_center").change(function () {
+    preview();
+});
+
+$("#qr_align_left").change(function () {
+    preview();
+});
+
+$("#qr_align_right").change(function () {
     preview();
 });

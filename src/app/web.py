@@ -9,6 +9,7 @@ def root():
                            website=app.config['WEBSITE'],
                            fonts=app.config['fonts'],
                            margins=app.config['margins'],
+                           spacing=app.config['font_spacing'],
                            labels=label_type_specs)
 
 
