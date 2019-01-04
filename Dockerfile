@@ -6,7 +6,6 @@ RUN apk upgrade -U && \
     pip3 install -r requirements_docker.txt && \
     yarn --cwd src && \
     mkdir /opt/labello/fonts
-EXPOSE 4242
 VOLUME /opt/labello/fonts
 ENV LAB_SERVER_PORT=4242
 ENV LAB_SERVER_HOST=0.0.0.0
