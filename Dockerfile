@@ -9,7 +9,7 @@ RUN apk upgrade -U && \
 VOLUME /opt/labello/fonts
 ENV LAB_SERVER_PORT=4242
 ENV LAB_SERVER_HOST=0.0.0.0
-ENV LAB_LOGGING=10
+ENV LAB_LOGGING=30
 ENV LAB_WEBSITE_HTML_TITLE="labello - print all your labels"
 ENV LAB_WEBSITE_TITLE="labello"
 ENV LAB_WEBSITE_SLUG="print all your labels"
