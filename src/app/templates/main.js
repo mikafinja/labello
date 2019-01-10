@@ -3,6 +3,8 @@ $("#print").click(function (e) {
     e.preventDefault();
 });
 
+var saveTimeout = false;
+
 function get_mode() {
     var mode = $("#mode:checked").val();
     if (mode === "qrcode") {
@@ -188,34 +190,41 @@ function get_data_image() {
 }
 
 function preview() {
-    // ajax request to get preview image
-    if (get_mode() === "text") {
-        $.ajax({
-            contentType: 'application/json; charset=UTF-8', type: "post", url: "/preview",
-            data: JSON.stringify(get_data_text()),
-            success: function (result) {
-                $('#preview').attr('src', 'data:image/png;base64,' + result);
-            }
-        });
-    }
-    if (get_mode() === "qrcode") {
-        $.ajax({
-            contentType: 'application/json; charset=UTF-8', type: "post", url: "/preview/qrcode",
-            data: JSON.stringify(get_data_qrcode()),
-            success: function (result) {
-                $('#preview').attr('src', 'data:image/png;base64,' + result);
-            }
-        });
-    }
-    if (get_mode() === "image") {
-        $.ajax({
-            enctype: 'multipart/form-data', contentType: false, processData: false, type: "post", url: "/preview/image",
-            data: get_data_image(),
-            success: function (result) {
-                $('#preview').attr('src', 'data:image/png;base64,' + result);
-            }
-        });
-    }
+    if(saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(function() {
+        if (get_mode() === "text") {
+            $.ajax({
+                contentType: 'application/json; charset=UTF-8', type: "post", url: "/preview",
+                data: JSON.stringify(get_data_text()),
+                success: function (result) {
+                    $('#preview').attr('src', 'data:image/png;base64,' + result);
+                }
+            });
+        }
+
+        if (get_mode() === "qrcode") {
+            $.ajax({
+                contentType: 'application/json; charset=UTF-8', type: "post", url: "/preview/qrcode",
+                data: JSON.stringify(get_data_qrcode()),
+                success: function (result) {
+                    $('#preview').attr('src', 'data:image/png;base64,' + result);
+                }
+            });
+        }
+        if (get_mode() === "image") {
+            $.ajax({
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                type: "post",
+                url: "/preview/image",
+                data: get_data_image(),
+                success: function (result) {
+                    $('#preview').attr('src', 'data:image/png;base64,' + result);
+                }
+            });
+        }
+    }, 300);
 }
 
 function print() {
