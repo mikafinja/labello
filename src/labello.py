@@ -10,5 +10,8 @@ import meinheld
 
 if __name__ == '__main__':
     logger.info("starting labello webserver")
-    meinheld.listen((app.config['host'], app.config['port']))
-    meinheld.run(app)
+    if app.debug:
+        app.run(app.config['host'], app.config['port'])
+    else:
+        meinheld.listen((app.config['host'], app.config['port']))
+        meinheld.run(app)
