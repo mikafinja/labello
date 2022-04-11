@@ -16,11 +16,11 @@ config_path = os.path.sep.join(config_path)
 
 try:
     with open(local_config_path, 'r') as fh:
-        config = yaml.load(fh)
+        config = yaml.safe_load(fh)
 
 except FileNotFoundError:
     with open(config_path, 'r') as fh:
-        config = yaml.load(fh)
+        config = yaml.safe_load(fh)
 
 # LOGGING
 logger = logging.getLogger('labello')
