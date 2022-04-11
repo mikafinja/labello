@@ -24,7 +24,7 @@ except FileNotFoundError:
 
 # LOGGING
 logger = logging.getLogger('labello')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(config['logging']['level'])
 # create console handler with a higher log level
 ch = logging.StreamHandler()
 ch.setLevel(config['logging']['level'])

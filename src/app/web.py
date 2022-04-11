@@ -1,7 +1,10 @@
-from . import app, label, fonts
+import logging
+from . import app, label
 from flask import render_template, send_file, request, jsonify, send_from_directory
 from brother_ql.devicedependent import label_type_specs
 
+
+logger = logging.getLogger(__name__)
 
 @app.route('/')
 def root():
@@ -20,7 +23,7 @@ def error_404(e):
 
 @app.route('/node_modules/<path:filename>', methods=['GET'])
 def node_module(filename):
-    print(filename)
+    logger.debug(filename)
     return send_from_directory(app.config['node_path'], filename)
 
 
@@ -38,9 +41,9 @@ def qrcode_preview():
 
 @app.route('/preview/image', methods=['POST'])
 def image_preview():
-    print(request.files['file'])
+    logger.debug(request.files['file'])
     data = request.form.to_dict()
-    print(data)
+    logger.debug(data)
     img = label.Label(data, request.files['file'])
     return img.draw()
 
