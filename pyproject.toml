@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "labello"
-version = "0.1.0"
+version = "0.2.0"
 description = "A webinterface to print labels"
 authors = ["telegnom <max@telegnom.org>"]
 license = "MIT"
