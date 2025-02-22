@@ -227,7 +227,7 @@ function preview() {
     }, 300);
 }
 
-function print() {
+function printLabel() {
     $('#status').html('printing...').removeClass("alert-info alert-danger alert-warning alert-success alert-secondary").addClass("alert-info");
 
     if (get_mode() === "text") {
